@@ -1,0 +1,34 @@
+# TH-D74 Editor Free Redistribution License
+
+Copyright © 2026 Jorge De La Cruz. All rights reserved.
+
+## Permission
+
+You may use and redistribute **unmodified copies** of TH-D74 Editor free of charge for personal, educational, and non-commercial purposes.
+
+## Redistribution requirements
+
+Redistributions must:
+
+- Be provided free of charge.
+- Include this license and all original copyright, attribution, and branding notices.
+- Clearly identify the software as **TH-D74 Editor** by Jorge De La Cruz.
+- Not claim, imply, or represent that the redistributor created, owns, endorses, or is affiliated with TH-D74 Editor.
+
+## Restrictions
+
+You may not:
+
+- Sell, rent, lease, sublicense, or charge a fee for TH-D74 Editor.
+- Bundle TH-D74 Editor with a commercial product or service without prior written permission.
+- Modify, reverse engineer, decompile, create derivative works from, or redistribute modified versions of TH-D74 Editor without prior written permission.
+- Remove or alter copyright, attribution, license, or branding notices.
+- Use the name, branding, or logo of TH-D74 Editor to promote a different product.
+
+## Disclaimer of warranty
+
+This software is provided **“as is”**, without warranty of any kind, express or implied. In no event shall the copyright holder be liable for any claim, damages, or other liability arising from use of the software.
+
+## Contact
+
+For commercial licensing or other permissions, contact [mobiledlc@gmail.com](mailto:mobiledlc@gmail.com).
