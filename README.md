@@ -1,90 +1,130 @@
 # TH-D74 Editor
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue) ![Platform](https://img.shields.io/badge/Windows_11-x64-0078D4) ![Publisher](https://img.shields.io/badge/by-KK4OXN-555555)
+![Version](https://img.shields.io/badge/version-1.0.1-blue) ![Platform](https://img.shields.io/badge/Windows_11-x64-0078D4) ![Publisher](https://img.shields.io/badge/by-KK4OXN-555555)
 
-**A Windows desktop editor for the Kenwood TH-D74, built to make radio programming easier to understand and easier to manage.**
+**A Windows desktop editor for the Kenwood TH-D74, built to make radio programming easier to understand and easier to manage—with an experimental TH-D75 profile for community testing.**
 
 Work with your channels in a readable grid, organize several memories at once, review imports before applying them, and keep your radio images backed up. Compact settings panels and a guided D-STAR workflow put related controls together without making you hunt through separate menus.
 
-[Download the installer](https://github.com/cruzerdlc/TH-D74-Editor/releases/latest) · [Request a feature on Patreon](https://www.patreon.com/cw/KK4OXN) · [Report an issue](https://github.com/cruzerdlc/TH-D74-Editor/issues)
+[Download the installer](https://github.com/cruzerdlc/TH-D74-Editor/releases/latest) · [Latest updates & feature requests on Patreon](https://www.patreon.com/cw/KK4OXN) · [Report an issue](https://github.com/cruzerdlc/TH-D74-Editor/issues)
+
+Project updates appear on **Patreon first**, followed by GitHub. Follow Patreon for the earliest announcements and testing news.
+
+> **TH-D75 testing notice:** Selected backup settings have been compared with Kenwood MCP-D75 using isolated saved copies. **Physical TH-D75 radio read/write has not been tested here.** D75 support remains experimental—not a claim of complete compatibility. Keep an original backup and review an edited copy in MCP-D75 before attempting a radio write.
+
+## What's new in v1.0.1
+
+### Model-aware D74 / D75 support
+
+- Open `.d74` and `.d75` backups. The actual MCP/model header selects the matching profile and settings automatically; renaming a file does not convert it.
+- Matching memory layouts for both models: group/search filters, Hide empty channels, Open backup, Save a copy, selection count, editing tools, and clear model/file status.
+- **All 1,000 ordinary memories (000–999)** are available, including channel 999, through editing, batch operations, imports/exports, and row insertion/deletion.
+- Model-matched saving and radio identity checks block D74/D75 mix-ups. Saves preserve headers and reject mismatched extensions or another model's existing destination. Raw clipboard records cannot cross models; CSV is the interchange route.
+- D75-only choices include information backlighting, demodulation display, guidance speed, phonetic callsign readout, volume-linked sound levels, and charging while powered on.
+- Dedicated D75 **DV Gateway**, **APRS Digipeater**, and **30-entry Hotspot List** pages. Hotspots support editing, search, multi-select removal/lockout, reordering, and MCP-compatible TSV import/export/template.
+- An original snapshot is preserved before the first offline D75 edit. Save a copy protects the opened original. Model-specific radio pictures appear only in Radio Information; app branding remains consistent.
+
+### Backups and transfers
+
+- Enabled-by-default **backup before write** preference. Turning it off makes an ordinary Write radio a single upload pass without the previous full memory pre-read; identity and protocol checks remain.
+- Exactly one startup choice: **last successful radio read**, **a selected saved backup**, or **nothing**. Backup browsing recognizes both models.
+- Bluetooth/serial **close-only I/O errors are cleanup warnings**, rather than incorrectly reporting a completed, saved read as failed. Genuine transfer errors/cancellation still report normally. Fresh hardware retesting of this fix is still needed.
+- Model-correct backups, separate protected last-read snapshots, and firmware metadata. Firmware is read from the radio or matching metadata, never guessed from the backup's file-format version.
+
+### App Configuration and troubleshooting
+
+- Dedicated **App Configuration** navigation: App Settings, Log Manager, and Submit Trouble Ticket. Project links use a wrapping horizontal footer in App Settings.
+- **Log Manager:** filter app, backup-operation, read/write, error logs and support ZIPs; search, preview, save copies, and multi-select for confirmed Recycle Bin deletion. Active logs are protected.
+- **F10 log capture**, with a configurable foreground-app shortcut. Capture current logs at a problem, add a description, and save a support ZIP. A GitHub issue draft can be opened, but **nothing is uploaded or submitted automatically**.
+- Support instructions wrap inside their cards. RadioReference application-key controls are hidden; account username/password remain session-only. No credentials or private keys are distributed.
+
+### D74 corrections and polish
+
+- Correct microphone sensitivity ordering: **High / Medium / Low**.
+- Correct APRS DCD code 1 label: **Detect Data**.
+- Altitude editing for all five saved GPS positions, in configured feet/meters, including below-sea-level values. Unchanged values preserve exact stored meters to avoid repeated-save rounding drift.
+- Correct app icon in the title/taskbar, transparent D75 artwork, model-aware dashboard information, and consistent memory-view controls.
+- Selection is cleared after a filter refresh, including when Select All was used, so hidden or newly shown rows cannot inherit the previous selection.
 
 ## What you can do
 
 | Area | Features |
 | --- | --- |
-| Memory channels | Edit 999 memory slots; search and filter by group; use Shift/Ctrl selection; change groups or scan lockout for multiple channels; clear contents or delete rows and shift later memories up. |
-| Everyday editing | Right-click commands for supported cut/copy/insert/delete operations; above/below placement choices; clear selection feedback; confirmation and Undo for supported changes. |
-| Channel imports | Preview stock configurations and CHIRP-style CSV files, select individual rows, choose a destination group, and review skip/overwrite behavior before committing. CHIRP export and an example template are included. |
-| Florida SARnet | A bundled **43-site Florida SARnet** stock config from the supplied reference list, with +5 MHz repeater inputs and the listed access tones. Estero and Pahokee are excluded because they are marked TBD. |
-| D-STAR | Guided repeater/hotspot setup, readable command previews, reflector/repeater tools, and automatic routing-field spacing. Registration and gateway permissions are not automated. |
-| Other memories | Grid views and supported editors for Program Scan, Call Channel, Weather, VFO, repeater lists, and callsign lists. Weather defaults and view-column controls are available. |
-| Radio settings | Consolidated Common Settings, Configuration, GPS & Digital, and APRS panels; FM Radio Mode remains separate. |
-| Backups | Open/save `.d74` radio images; browse known backup folders; filter, rename, and select multiple backups for confirmed deletion. Protected snapshots cannot be deleted through the manager. |
-| Appearance | Light/dark mode, a sun/moon toggle, a matching title bar, collapsible navigation, and lined grids with readable headings. |
-| Radio connection | COM-port selection, refresh, read/write controls, progress, and cancellation in the Radio Information area. |
+| Memory channels | Edit 1,000 slots; search/filter by group; Shift/Ctrl multi-select; batch group or scan lockout changes; clear contents or delete rows and shift up. The Empty flag is hidden; empty slots remain available. |
+| Everyday editing | Supported right-click cut/copy/insert/delete, above/below placement, strong selection highlighting, confirmation and Undo. Floating key hints are hidden; shortcuts remain. |
+| Channel imports | Preview stock configs and CHIRP-style CSV, select rows, choose a destination/group, and review skip/overwrite behavior. CHIRP export and templates are included. |
+| Florida SARnet | A bundled 43-site stock config, listed tones and +5 MHz inputs. Estero and Pahokee are excluded because the reference marks them TBD. |
+| D-STAR | Guided repeater/hotspot setup, command previews, reflector/repeater tools, and routing-field spacing. It prepares memories; it does not register callsigns, provide a gateway connection or transmit automatically. |
+| Other memories | Program Scan, Call, Weather, VFO, repeater and callsign tools; D75 additionally exposes its experimental hotspot list. |
+| Settings | Compact Common Settings, Configuration, GPS & Digital, and APRS panels. FM Radio Mode remains separate; D75-only menus appear only for D75. |
+| Backups | Open/save model-correct images; browse known folders; filter, rename, and multi-delete with confirmation. Protected snapshots cannot be deleted through the manager. |
+| Appearance | Light/dark mode, one sun/moon toggle, matching title bar, collapsible navigation and lined grids sized to their content. |
+| Connection | Compact COM selection/refresh, explicit read/write, progress, cancellation, model verification and optional pre-write backup. |
+| Troubleshooting | Filtered log management and on-demand support ZIPs with a problem description. Files stay local until you share them. |
 
 ## Download and install
 
-1. Download **TH-D74-Editor-v1.0.0-x64.msi** from the release assets.
-2. Save your work and close TH-D74 Editor before installing or upgrading.
-3. Run the MSI and follow its installer prompts. Installation is per-machine and may ask for administrator approval.
+1. Download **TH-D74-Editor-v1.0.1-x64.msi** from the [v1.0.1 release](https://github.com/cruzerdlc/TH-D74-Editor/releases/tag/v1.0.1).
+2. Save your work and close TH-D74 Editor before upgrading. Keep an independent radio backup.
+3. Run the MSI and follow its prompts. Installation is per-machine and may request administrator approval.
 4. Open **TH-D74 Editor** from the Start menu.
 
-The installer places the application under `Program Files\TH-D74 Editor`. Normal MSI repair/uninstall is available through Windows Installed apps. The package contains the application and its required .NET/Windows App SDK files; Python is not required. A radio's USB/serial driver is separate and is not installed by this MSI.
+The installer uses `Program Files\TH-D74 Editor` and the existing upgrade family. Windows Installed apps provides repair/uninstall. Required .NET/Windows App SDK application runtimes are bundled; Python is not required. Radio drivers and Bluetooth setup are separate.
 
-**Verified platform:** Windows 11 on an x64 PC. This release has not been verified on Windows 10 or Windows on ARM.
+**Development/testing platform:** Windows 11 x64. Windows 10 and Windows on ARM have not been verified. Package extraction checks do not substitute for a clean-PC install/upgrade/uninstall test.
 
-### A note about Windows signing warnings
+### Windows signing
 
-The app's own executable/assemblies and the MSI are SHA-256 code-signed and timestamped with the existing KK4OXN **self-signed development certificate**. It is not a public certificate-authority certificate and it is not Microsoft certification.
+The app's own executable/assemblies and MSI are SHA-256 signed and timestamped using the existing KK4OXN **self-signed development certificate**. This is not a public certificate-authority certificate or Microsoft certification.
 
-- Certificate subject: `CN=KK4OXN, O=RT-950 950Pro Editor` (the same signing identity used for the earlier app).
-- Certificate thumbprint: `ECAD9E3256B94239B01C126DB6693D153744D209`.
-- On PCs that do not already trust this certificate, Windows can still show an unknown-publisher or SmartScreen warning.
-- The MSI does **not** disable SmartScreen, add trusted roots/publishers, or change Windows certificate trust settings.
-- Private signing keys and certificate-password files are **not** included.
+- Subject: `CN=KK4OXN, O=RT-950 950Pro Editor`.
+- Thumbprint: `ECAD9E3256B94239B01C126DB6693D153744D209`.
+- Other PCs may still show unknown-publisher or SmartScreen warnings if the certificate is not trusted or the download lacks reputation.
+- The installer does not disable Windows protections, add trusted certificates, or change security settings. No private signing material is included.
 
-Only install files from the publisher's verified release location. Do not disable Windows security protections to install this app. [Microsoft explains how signing and SmartScreen reputation differ](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+Only install from the project's verified release location; do not disable Windows security protections to install the app.
 
 ## Your first programming session
 
-1. Open an existing `.d74` backup, or select the correct COM port and read the radio.
-2. Save a backup before making changes. Keep it somewhere separate from the application folder.
-3. Edit channels/settings, or open **Channel import → Stock Configs** / **CHIRP CSV** and review the rows you want.
-4. Choose the destination group and placement. Confirm the import, then check the resulting memories.
-5. Save the edited image. Writing the radio is a separate, explicit action—previewing or importing a CSV does not transmit or write to the radio.
+1. Open a matching backup or select the correct model/COM port and read your radio. Opening a backup selects its profile automatically.
+2. Save an independent original backup. For D75, treat every feature as experimental and review your separately saved copy in MCP-D75 before a write.
+3. Edit channels/settings or open **Channel import → Stock Configs / CHIRP CSV** and review the rows you want.
+4. Confirm the destination group/placement and inspect the results. Supported changes can be undone.
+5. Save using the model's correct extension. Writing a connected radio is a separate, explicit action.
 
-For SARnet, select **Florida SARnet** in Stock Configs. The supplied image's TX frequencies are repeater outputs: the radio receives there and transmits 5 MHz higher. This stock is a reference-list snapshot, not a live system-status report. [SARnet's map explains the offset](https://sarnetfl.org/uploads/6/1/7/0/61701057/20230910_sarnet_map.pdf).
+For SARnet choose **Florida SARnet** in Stock Configs. It is a reference-list snapshot, not a live availability report. Check local operating requirements before transmitting.
 
-## Important limits
+## Important limits and safeguards
 
-- Use the profile that matches your radio. Capability checks do not grant permission to transmit or change radio hardware capability.
-- Unsupported digital modes such as DMR are not converted to FM. CHIRP rows using unverified reversed-DCS, priority-scan, or per-channel transmit-disable settings are blocked rather than silently changed.
-- A CSV is a channel-interchange file, **not a full radio backup**. Radio-specific group/settings information, fine-mode details, per-channel power, and some digital information may not transfer through other software. Power is omitted from CHIRP exports rather than invented; review the destination radio's power settings.
-- D-STAR routing fields should be verified in the destination software; some CHIRP versions do not retain them from generic CSV.
-- RadioReference searches require your own approved application key and appropriate RadioReference account access. No account credentials or application keys ship in this release.
-- The installer/uninstaller does not intentionally remove your personal AppData settings, stock configurations, or backup images. Always keep an independent backup before an update.
+- **D75 hardware transfers have not been tested here.** MCP comparisons validate selected file mappings, not every setting or hardware behavior.
+- Identity checks reject unknown/mismatched radios before memory transfer. They cannot guarantee recovery from disconnections or interrupted writes.
+- The final two radio-managed blocks are not written. Use matching Kenwood software for GPS receiver picture installation. Boot-picture-specific uploads still need a fresh read to merge picture-only changes, even with pre-write backup off.
+- Unsupported modes such as DMR are not silently converted to FM. Unsupported CHIRP settings are rejected instead of guessed.
+- CSV is channel interchange, **not a full backup**. Groups, settings, fine tuning, power and digital fields may not transfer through other software. CHIRP export does not invent per-channel power; review destination settings and D-STAR routing.
+- MARS options apply only to appropriately hardware-modified radios. The app cannot modify hardware or grant permission to transmit.
+- RadioReference needs configured application access and your own appropriate premium account. Availability depends on setup; no application key or account credentials ship in this package.
+- Logs may contain identifying paths/callsigns. Review support ZIPs before public sharing. Radio images, credential/settings files and older support ZIPs are excluded from capture.
+- Installer/uninstaller actions do not intentionally remove personal AppData settings, stocks or backups. Keep an independent backup before updating.
 
-## Support the project or request something new
-
-Have an idea for a feature, a stock configuration, an easier workflow, or another radio tool?
+## Support the project or request a feature
 
 ### [Visit KK4OXN on Patreon](https://www.patreon.com/cw/KK4OXN)
 
-Tell me the radio model, what you want to do, and what would make it easier. Screenshots and small sample files help explain import formats—please remove passwords, API keys, and other private information first. Requests are welcome, but compatibility and feasibility need to be checked before an addition can be promised.
+Have an idea for a stock config, a simpler workflow or another radio tool? Share the model, what you want to accomplish, and an example or screenshot. Remove passwords, API keys and private information first. Requests are welcome; feasibility and compatibility need checking before an addition can be promised.
 
-Bug reports can also go to [GitHub Issues](https://github.com/cruzerdlc/TH-D74-Editor/issues). Include the app version, Windows version, steps to reproduce, and whether you were working from a backup or connected radio.
+Bug reports can also go to [GitHub Issues](https://github.com/cruzerdlc/TH-D74-Editor/issues). Include app/Windows version, model, connection type, reproduction steps and whether you used a backup or connected radio. F10 can capture logs at the problem.
 
 ## Release details
 
-- Version: **1.0.0** (`version.txt` contains the same version).
-- Installer: **TH-D74-Editor-v1.0.0-x64.msi**.
-- Publisher: **KK4OXN**.
-- MSI SHA-256: `AD1064D1400861E73D6A8EC16C532C575F49D3931044AF04A008D28E74EA67DB`.
-- Distribution: installer and release documents only; no application source, debug symbols, personal backups, or private signing material are included in the upload packages.
+- Version: **1.0.1** (`version.txt` matches).
+- Installer: **TH-D74-Editor-v1.0.1-x64.msi**.
+- Publisher: **KK4OXN / Jorge De La Cruz**.
+- MSI SHA-256: `CF716B7CC5114F9B38E002B92EF6C69E557F14D45FF5572105426809E9E77E34`.
+- Installer/documents only: no application source, debug symbols, personal radio images/logs, credentials or private signing material.
+- [Free Redistribution License](https://github.com/cruzerdlc/TH-D74-Editor/blob/main/LICENSE.md). Third-party notices are installed with the application.
 
 ### Verification scope
 
-The 35 offline functional-test groups and six protocol tests passed. The MSI's administrative extraction and installed-file integrity checks were also performed; this does not claim a normal install/upgrade/uninstall was tested on a separate clean PC. No connected-radio write was performed during release verification. The complete screen-automation suite encountered intermittent dialog-timing failures, so this release is not represented as having a fresh complete UI-suite pass.
+37 offline functional-test groups, eight protocol checks, focused D74 corrections/altitude tests, D74/D75 boundary tests and 35 whole-image MCP-D75 reference comparisons passed. Installer signature/timestamp and extracted payload checks are performed separately. These are not physical-radio tests or a clean-PC installation certification. The native UI rerun passed theme, backups, settings, D-STAR, channel selection/batch/shift, special-memory editors and grid checks, then stopped on an outdated three-section navigation expectation (App Configuration makes four). That assertion was corrected; **a full fresh UI-suite pass is not claimed**. See release notes for limitations.
 
-This is an independent project, not official Kenwood software or an endorsement by Kenwood, Microsoft, CHIRP, or SARnet. Third-party notices are installed with the application.
+This independent project is not official Kenwood software or endorsed by Kenwood, Microsoft, CHIRP or SARnet.
