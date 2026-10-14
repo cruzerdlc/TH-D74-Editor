@@ -2,6 +2,13 @@
 
 A Windows desktop editor for Kenwood TH-D74 memories, settings, backups and guided D-STAR programming, now with an **experimental TH-D75 profile**.
 
+## Same-version installer refresh — October 14, 2026
+
+**Re-download and run the MSI even if you already have v1.0.1.** This replaces the earlier package but keeps version/tag `1.0.1`. The version-only update checker will not detect this replacement.
+
+- Fixed USB/COM identification stopping at a late `?` reply instead of reading the following radio identity. Blank/echoed replies are tolerated within a bounded deadline; cancellation and wrong/unknown-model rejection remain intact. Connected TH-D74 identity-only verification passed; no complete fresh transfer is claimed.
+- Fixed split-channel offset display in the memory grid and editor: TX minus RX is shown instead of an absolute TX frequency or zero. The calculated split offset is read-only; explicit TX frequency, radio storage and CHIRP export remain unchanged.
+
 ## New and improved
 
 - Automatic D74/D75 settings selection from backup headers; model-matched `.d74`/`.d75` opening, saving, discovery and connected-radio identity checks.
@@ -30,15 +37,15 @@ Existing CHIRP CSV, multi-channel editing, compact settings, guided D-STAR, ligh
 
 Install **TH-D74-Editor-v1.0.1-x64.msi** from the assets. `version.txt` contains `1.0.1`; `README.md` includes description, changes and instructions. No application source or private data is distributed.
 
-MSI SHA-256: `CF716B7CC5114F9B38E002B92EF6C69E557F14D45FF5572105426809E9E77E34`
+MSI SHA-256: `AEC0CFEA9220091561930D405A3C34E71D007D262C9C3C95AC47F4A2AC1C6F10`
 
 ## Signing and verification
 
 Application binaries and installer are signed/timestamped using the existing **KK4OXN self-signed development certificate**. Other PCs may still show publisher/SmartScreen warnings; this is not Microsoft certification. No security/certificate-trust settings are changed.
 
-37 offline functional-test groups, eight protocol checks, focused D74 corrections and D74/D75 boundary tests, and 35 MCP-D75 whole-image reference comparisons passed. Installer signature/timestamp and administrative extraction integrity are checked separately. No clean-PC installation/upgrade/uninstall or physical D75 transfer is claimed.
+38 offline functional-test groups, 11 protocol checks, focused D74 corrections and 35 MCP-D75 whole-image reference comparisons passed for this refresh, including split-offset/CHIRP preservation, noisy identity, model rejection and cancellation. Installer signature/timestamp and administrative extraction integrity are checked separately. No clean-PC installation/upgrade/uninstall or physical D75 transfer is claimed.
 
-The native UI rerun passed theme, backups, settings, D-STAR, channel selection/batch/shift, special-memory editors and grid checks. It stopped on an outdated three-section navigation assertion (the new App Configuration section makes four). That test expectation was corrected; **a full fresh UI-suite pass is not claimed.**
+The full fresh native UI suite passed: themes, backups, settings, guided D-STAR, channel selection/batch/shift, special-memory editors, all four navigation sections, split-offset editor controls, image previews and grid layouts. No radio I/O was performed during this run.
 
 ## Updates and feedback
 

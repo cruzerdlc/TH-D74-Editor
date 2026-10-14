@@ -14,6 +14,13 @@ Project updates appear on **Patreon first**, followed by GitHub. Follow Patreon 
 
 ## What's new in v1.0.1
 
+### Installer refresh — October 14, 2026
+
+This replaces the earlier v1.0.1 installer without changing the version number. **Download the MSI again and run it to update an existing v1.0.1 installation.** The version-only update checker cannot distinguish this refresh from the earlier package.
+
+- **USB/COM identification:** tolerates late `?`, blank and echoed command replies while waiting for the real radio identity. Wrong/unknown models are still rejected, and probing remains bounded and cancellable. An identity-only check succeeded on a connected TH-D74; a complete fresh radio transfer is not claimed.
+- **Split-channel offsets:** the memory table and editor now show TX minus RX, including negative and unusual splits. The editor keeps the transmit frequency editable and the calculated offset read-only. Radio storage and CHIRP split-frequency export are unchanged.
+
 ### Model-aware D74 / D75 support
 
 - Open `.d74` and `.d75` backups. The actual MCP/model header selects the matching profile and settings automatically; renaming a file does not convert it.
@@ -119,12 +126,12 @@ Bug reports can also go to [GitHub Issues](https://github.com/cruzerdlc/TH-D74-E
 - Version: **1.0.1** (`version.txt` matches).
 - Installer: **TH-D74-Editor-v1.0.1-x64.msi**.
 - Publisher: **KK4OXN / Jorge De La Cruz**.
-- MSI SHA-256: `CF716B7CC5114F9B38E002B92EF6C69E557F14D45FF5572105426809E9E77E34`.
+- MSI SHA-256: `AEC0CFEA9220091561930D405A3C34E71D007D262C9C3C95AC47F4A2AC1C6F10`.
 - Installer/documents only: no application source, debug symbols, personal radio images/logs, credentials or private signing material.
 - [Free Redistribution License](https://github.com/cruzerdlc/TH-D74-Editor/blob/main/LICENSE.md). Third-party notices are installed with the application.
 
 ### Verification scope
 
-37 offline functional-test groups, eight protocol checks, focused D74 corrections/altitude tests, D74/D75 boundary tests and 35 whole-image MCP-D75 reference comparisons passed. Installer signature/timestamp and extracted payload checks are performed separately. These are not physical-radio tests or a clean-PC installation certification. The native UI rerun passed theme, backups, settings, D-STAR, channel selection/batch/shift, special-memory editors and grid checks, then stopped on an outdated three-section navigation expectation (App Configuration makes four). That assertion was corrected; **a full fresh UI-suite pass is not claimed**. See release notes for limitations.
+38 offline functional-test groups, 11 protocol checks, focused D74 corrections/altitude tests and 35 whole-image MCP-D75 reference comparisons passed for this refresh. Checks include split-offset/CHIRP preservation, identity noise, model rejection, cancellation and D74/D75 memory boundaries. The full native UI suite passed, covering themes, backups, settings, guided D-STAR, selection/batch/shift, special-memory editors, navigation, split-offset controls and grid layouts. Installer signature/timestamp and extracted payload checks are performed separately. These are not full physical-radio tests or a clean-PC installation certification. See release notes for limitations.
 
 This independent project is not official Kenwood software or endorsed by Kenwood, Microsoft, CHIRP or SARnet.
